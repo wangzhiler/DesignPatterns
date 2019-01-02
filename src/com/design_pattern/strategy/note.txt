@@ -1,0 +1,3 @@
+Strategy
+C&C  Comparable&Comparator
+策略模式： 比如比较大小时，定义一个策略的比较器，然后由具体的比较策略来比较大小

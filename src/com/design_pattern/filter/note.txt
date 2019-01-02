@@ -1,0 +1,4 @@
+chain of responsibility
+
+对消息规则过滤
+-> 动态指定规则

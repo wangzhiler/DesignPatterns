@@ -1,0 +1,58 @@
+1.模拟鸭子项目
+    Duck: quack() swim() 所有鸭子都会叫&游泳
+          abstract display() 外观不同，由子类实现
+    RedheadDuck extends Duck: display()
+
+2.项目的新需求 鸭子会飞
+    在Duck类上 + fly() : 导致所有子类都有了fly()
+
+3.用OO原则解决新需求的不足
+
+4.用策略模式来新需求解决
+    应对项目的扩展性，降低复杂度
+    提取变化部分，抽象成接口+实现
+
+    public interface FlyBehavior{   void fly(); }
+
+5.重新设计模拟鸭子项目
+
+public astract class Duck{
+    FlyBehavior mFlybehavior;
+    public Duck(){}
+    public void Fly(){
+        mFlybehavior.fly();
+    }
+    public abstract void display(){};
+}
+
+public class GreenHeadDuck extends Duck{
+    public GreenHeadDuck(){
+        mFlybehavior=new GoodFlyBehavior();
+    }
+    @Override
+    public void display(){}
+}
+
+
+总结策略模式定义
+分别封装行为接口，实现算法族，超类里放行为接口对象，在自类里具体设定行为对象。
+原则就是：分离变化部分，封装接口，基于接口编程各种功能。
+此模式让行为算法的变化独立于算法的使用者
+
+* 注意点
+1. 分析项目中的变化部分和不变部分
+2. 多用组合少用继承； 用行为类组合，而不是行为的继承。更有弹性
+
+
+
+
+
+
+
+
+
+
+
+
+
+

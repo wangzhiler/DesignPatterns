@@ -1,0 +1,17 @@
+模拟情景：
+小孩在睡觉，醒来后要求吃东西
+
+版本1：
+child一个线程，dad一个线程，dad中有child属性，dad线程一直盯着child线程，无端浪费CPU资源
+
+版本2:
+child一个线程，child中有dad属性，dad不用线程，child醒了调用dad的feed
+
+版本3：
+WakenUpEvent为一个事件类
+定一个一个监听事件的接口 WakenUpListener, 有一个void ActionToWakenUp(WakenUpEvent wakenUpEvent)
+Dad、GrandFather实现该接口，定义具体针对传入wakenUpEvent的反应行为
+Child类中有一个listeners队列，wakeup()时对队列中每个监听器调用Action并传入event
+
+
+

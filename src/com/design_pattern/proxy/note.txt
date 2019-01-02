@@ -1,0 +1,33 @@
+Movable接口，有move方法
+Tank实现Movable
+
+问题：如何知道一个方法的运行时间？（并不能修改方法）
+Tank中的move方法的时间：
+1. 继承
+Tank2类继承Tank类，重写move方法，调用super前后计算时间差
+2. 聚合（一个类中有另一个类的对象）
+Tank3类实现Movable，有一个Tank t对象，move()中调用t.move()看时间差
+
+Tank2、Tank3都是代理
+
+聚合更好，继承不灵活
+
+TankTimeProxy, TankLogProxy 都实现Movable，各有Movable t对象，构造函数也是传入Movable对象
+在调用的时候可一层包着一层
+
+* 如果Movable接口中不止一个函数，每个函数都希望计算时间差
+考虑TimeProxy可以计算Movable对象的任一方法的时间差
+
+假设被代理的对象都实现了某个特定接口，根据该接口生成代理对象
+Proxy类 newProxyInstance()来产生新的代理类
+调用的时候Movable m = (Movable) Proxy.newProxyInstance();
+
+动态代理，直接调newProxyInstance(),动态编译newProxyInstance()内的代码
+动态编译方法：
+1. JDK6 Compiler API
+2. CDLib
+3. ASM
+
+在newProxyInstance()中
+
+

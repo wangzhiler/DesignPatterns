@@ -1,0 +1,30 @@
+1. 观察者模式就像定牛奶业务
+    1) 奶站,Subject
+    2) 用户,Observer
+
+2. Subject:  对象使用此接口注册为观察者、把自己从观察者中移除...
+    登记注册、移除和通知
+    <interface> Subject: registerObserver(),removeObserver(),notifyObservers()
+
+3. Observer: 所有潜在的观察者都要实现此接口
+    接收输入
+    <interface> Observer: update()
+
+4. 观察者模式: 对象之间多对一依赖的一种设计方案,被依赖的对象为Subject,依赖的对象为Observer,Subject通知Observer变化
+
+
+Java内置观察者
+1. Observable 一个java内置类 不是接口
+2. 无法多重继承
+3. 一定要setChange() 因为有个布尔值, setChange()会改为true,这样才会执行更新
+
+WeatherData extends Observable (一定要this.setChanged();)
+CurrentConditions implements Observer
+ForcastConditions implements Observer
+
+//注册两个观察者
+//后注册的先执行
+mWeatherData.addObserver(mCurrentConditions);
+mWeatherData.addObserver(mForcastConditions);
+
+松耦合、高内聚、隔离
